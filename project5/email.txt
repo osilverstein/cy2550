@@ -1,1 +1,1 @@
-silverstein.o@northeastern.edu.shadow
+silverstein.o@northeastern.edu
