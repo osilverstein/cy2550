@@ -48,3 +48,5 @@ def xkcdpwgen():
         password += random.choice(list('~!@#$%^&*.:;'))
     print(password)
     return
+if __name__ == '__main__':
+    xkcdpwgen()
