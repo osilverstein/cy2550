@@ -36,16 +36,29 @@ def xkcdpwgen():
     with open('words.txt', 'r') as f:
         word_list = f.read().splitlines()
     for i in range(words):
-        password += random.choice(word_list)
+        password += random.choice(word_list).lower()
         if i < words - 1:
             password += " "
     for i in range(caps):
-        password = random.choice(password.split())
-        password = password[0].upper() + password[1:]
+        #capitalize caps number of words in the password
+        #select the words randomly from the password to capitalize
+        word_to_cap = random.choice(password.split())
+        #make sure the word isn't already capitalized
+        while word_to_cap[0].isupper():
+            word_to_cap = random.choice(password.split())
+        #capitalize the first letter of the word
+        word_to_cap = word_to_cap[0].upper() + word_to_cap[1:]
+        #replace the word in the password with the capitalized word
+        password = password.replace(word_to_cap.lower(), word_to_cap)
     for i in range(numbers):
+        #insert numbers
         password += str(random.randint(0, 9))
     for i in range(symbols):
-        password += random.choice(list('~!@#$%^&*.:;'))
+        #insert symbols
+        password += random.choice(
+            '!@#$%^&*()_-+={}[]|\:;"\'<>,.?/~`')
+    #remove spaces from the password
+    password = password.replace(" ", "")
     print(password)
     return
 if __name__ == '__xkcdpwgen__':
